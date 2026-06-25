@@ -124,4 +124,7 @@
   "footerSocials": {
     "github": "https://github.com/wraith-protocol"
   }
+
+  "guides/privacy-best-practices",
+              "guides/stellar-troubleshooting"
 }
