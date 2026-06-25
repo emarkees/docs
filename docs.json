@@ -119,12 +119,15 @@
               "guides/bring-your-own-model",
               "guides/privacy-best-practices",
               "guides/stellar-troubleshooting"
+              "guides/spectre-stellar-cookbook"
             ]
           },
           {
             "group": "Operations",
             "pages": [
-              "guides/stellar-mainnet-deployment"
+              "guides/stellar-mainnet-deployment",
+            "guides/stellar-multisig-withdrawal",
+            "guides/stellar-offline-signing"
             ]
           }
         ]
