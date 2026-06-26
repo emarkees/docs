@@ -2,6 +2,7 @@ import { mkdtemp, readFile, readdir, rm, symlink, writeFile } from "node:fs/prom
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { spawn } from "node:child_process";
+import process from "node:process";
 
 type Snippet = {
   attrs: string;
@@ -17,6 +18,7 @@ const checkableLanguages = new Set(["ts", "tsx", "typescript", "js", "javascript
 const ignoredDirs = new Set([".git", ".github", "node_modules", ".next", "dist", "build"]);
 
 const ambientPrelude = `
+declare module "redis";
 declare global {
   var account: any;
   var agent: any;
@@ -28,6 +30,7 @@ declare global {
   var chainRegistry: any;
   var config: any;
   var connector: any;
+  var db: any;
   var detected: any;
   var ephemeralPubKey: Uint8Array;
   var hash: string;
@@ -39,6 +42,9 @@ declare global {
   var privateKey: any;
   var publicClient: any;
   var publicKey: Uint8Array;
+  var process: any;
+  var address: any;
+  var setError: any;
   var recipient: any;
   var recipientSpendingPubKey: any;
   var recipientViewingPubKey: any;
@@ -98,7 +104,7 @@ async function main() {
       "utf8",
     );
 
-    const result = await run("npx", ["tsc", "--noEmit", "--project", compilerConfig]);
+    const result = await run("pnpm", ["exec", "tsc", "--noEmit", "--project", compilerConfig]);
     if (result.exitCode !== 0) {
       failures.push(appendSourceMap(result.output.trim(), checkable));
     }

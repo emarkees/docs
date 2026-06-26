@@ -411,7 +411,7 @@ try {
 
 The domain has a `stellar.toml` but hasn't configured federation.
 
-```typescript
+```typescript no-check
 } catch (err) {
   if (err.code === "NO_FEDERATION_SERVER") {
     // Show: "example.com doesn't support federation addresses"
@@ -423,7 +423,7 @@ The domain has a `stellar.toml` but hasn't configured federation.
 
 The federation server responded but doesn't know this username.
 
-```typescript
+```typescript no-check
 } catch (err) {
   if (err.code === "NOT_FOUND") {
     // Show: "alice*example.com was not found"
@@ -437,7 +437,7 @@ This is the most common failure in payment UIs. Display it inline, next to the i
 
 The federation server is reachable but returns a response missing `account_id`, or returns invalid JSON.
 
-```typescript
+```typescript no-check
 } catch (err) {
   if (err.code === "MALFORMED_RESPONSE") {
     // Show: "example.com's federation server returned an unexpected response"
@@ -451,7 +451,7 @@ The federation server is reachable but returns a response missing `account_id`, 
 
 The federation server is too slow. Default timeout is 5 seconds; adjust with `options.timeoutMs`.
 
-```typescript
+```typescript no-check
 } catch (err) {
   if (err.code === "TIMEOUT") {
     // Show: "The federation server took too long to respond. Try again."
@@ -506,7 +506,7 @@ try {
 
 When your payment form accepts a Stellar destination, hint that federation addresses work:
 
-```tsx
+```tsx no-check
 // React example
 <input
   type="text"
